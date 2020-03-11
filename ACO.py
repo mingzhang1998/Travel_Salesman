@@ -52,6 +52,8 @@ class ACO(object):
 
         best_length = math.inf
         best_path = []
+        all_path = []
+        all_length = []
         for itr in range(self.num_itr):
             ants = [_Ant(self, graph) for i in range(self.num_ants)]
             for ant in ants:
@@ -61,11 +63,12 @@ class ACO(object):
                 if ant.total_length < best_length:
                     best_length = ant.total_length
                     best_path = ant.tabu
-
+                    all_path.append(best_path)
+                    all_length.append(best_length)
                 ant.update_delta_pheromone()
             self._update_pheromone(graph, ants)
 
-        return best_path, best_length
+        return best_path, best_length, all_path, all_length
 
 
 class _Ant(object):

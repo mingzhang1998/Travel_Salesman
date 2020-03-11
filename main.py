@@ -1,13 +1,14 @@
 import math
 from ACO import ACO, Graph
 from plot import plot
+from plot import plot_animation
 
 
 def distance(point1, point2):
     return math.sqrt((point1['x'] - point2['x']) ** 2 + (point1['y'] - point2['y']) ** 2)
 
 
-def run_aco(data = "./data/data_20.txt"):
+def run_aco(data="./data/data_20.txt"):
     points = []
     locations = []
     with open(data) as f:
@@ -23,12 +24,13 @@ def run_aco(data = "./data/data_20.txt"):
         for j in range(rank):
             row.append(distance(locations[i], locations[j]))
         cost_matrix.append(row)
-    aco = ACO()
+    aco = ACO(5, 10)
     graph = Graph(points, cost_matrix, rank)
-    path, length = aco.solve(graph)
-    print('cost: {}, path: {}'.format(length, path))
-    plot(points, path)
-
+    path, length, all_path, all_length = aco.solve(graph)
+    print('length: {}, path: {}'.format(length, path))
+    print(all_length)
+    plot_animation(points, path, length)
+    #test_animation()
 
 if __name__ == '__main__':
     run_aco()
