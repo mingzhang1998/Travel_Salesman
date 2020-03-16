@@ -1,6 +1,6 @@
 import math
 from ACO import ACO, Graph
-from plot import plot
+from plot import plot_all
 from plot import plot_animation
 
 
@@ -29,8 +29,8 @@ def run_aco(data="./data/data_20.txt"):
     path, length, all_path, all_length = aco.solve(graph)
     print('length: {}, path: {}'.format(length, path))
     print(all_length)
+    plot_all(points, all_path, all_length)
     plot_animation(points, path, length)
-    #test_animation()
 
 if __name__ == '__main__':
     run_aco()

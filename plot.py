@@ -67,5 +67,44 @@ def plot_animation(points, path, length):
     plt.show()
 
 
+def plot_all(points, all_path, all_length):
+    """
+
+    :param points:
+    :param all_path:
+    :param all_length:
+    :return: the final dynamic graph
+    """
+    fig = plt.figure()
+    ax = plt.axes(xlim=(0, 10000), ylim=(0, 10000))
+    line, = ax.plot([],[],lw=3)
+
+    def init():
+        line.set_data([], [])
+        return line,
+
+    def _generate_coordinate(num):
+        new_points = []
+        for k in all_path[num]:
+            new_points.append(points[k])
+        x = []
+        y = []
+        for point in new_points:
+            x.append(point[0])
+            y.append(point[1])
+        return x,y
+
+    def animate(i):
+        xdata, ydata = _generate_coordinate(i)
+        xdata.append(xdata[0])
+        ydata.append(ydata[0])
+        line.set_data(xdata, ydata)
+        plt.title("Ant Colony Optimization, total length = " + str(int(all_length[i])))
+        return line,
+    anim = animation.FuncAnimation(fig, animate, init_func=init, frames=len(all_path), interval=200, repeat=False)
+    plt.show()
+
+
+
 if __name__ == '__main__':
-   print(0)
+    print(0)

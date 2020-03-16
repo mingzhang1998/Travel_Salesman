@@ -60,11 +60,13 @@ class ACO(object):
                 for i in range(graph.rank - 1):
                     ant.select_next()
                 ant.total_length += graph.matrix[ant.tabu[-1]][ant.tabu[0]]
+                all_path.append(ant.tabu)
+                all_length.append(ant.total_length)
                 if ant.total_length < best_length:
                     best_length = ant.total_length
                     best_path = ant.tabu
-                    all_path.append(best_path)
-                    all_length.append(best_length)
+                    # all_path.append(best_path)
+                    # all_length.append(best_length)  release this code to have a increasing performance plot
                 ant.update_delta_pheromone()
             self._update_pheromone(graph, ants)
 
