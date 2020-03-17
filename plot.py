@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
 
+
 def plot(points, path, length=0):
     """
 
@@ -67,7 +68,7 @@ def plot_animation(points, path, length):
     plt.show()
 
 
-def plot_all(points, all_path, all_length):
+def plot_all(points, all_path, all_length, algorithm):
     """
 
     :param points:
@@ -99,12 +100,8 @@ def plot_all(points, all_path, all_length):
         xdata.append(xdata[0])
         ydata.append(ydata[0])
         line.set_data(xdata, ydata)
-        plt.title("Ant Colony Optimization, total length = " + str(int(all_length[i])))
+        plt.title(algorithm + ", total length = " + str(int(all_length[i])))
         return line,
-    anim = animation.FuncAnimation(fig, animate, init_func=init, frames=len(all_path), interval=200, repeat=False)
+    anim = animation.FuncAnimation(fig, animate, init_func=init, frames=len(all_path), interval=50, repeat=False)
     plt.show()
 
-
-
-if __name__ == '__main__':
-    print(0)
