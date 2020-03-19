@@ -25,7 +25,7 @@ def run_aco(data="./data/data_20.txt"):
         for j in range(rank):
             row.append(distance(locations[i], locations[j]))
         cost_matrix.append(row)
-    aco = ACO(5, 10)
+    aco = ACO(20, 200)
     graph = Graph(points, cost_matrix, rank)
     path, length, all_path, all_length = aco.solve(graph)
     print('length: {}, path: {}'.format(length, path))
@@ -46,11 +46,12 @@ def run_anneal(data="./data/data_20.txt"):
     sa = SimAnneal(points, stopping_iter=3000)
     sa.anneal()
     print("best path: ", sa.best_solution, "total length: ", sa.best_fitness)
-    plot_all(points, sa.solution_list, sa.fitness_list, "Simulated Annealing")
-    plot_animation(points, sa.best_solution, sa.best_fitness)
+    plot_all(points, sa.solution_list, sa.fitness_list, algorithm="Simulated Annealing")
+    plot_animation(points, sa.best_solution, sa.best_fitness, algorithm= "Simulated Annealing")
+
 
 if __name__ == '__main__':
     # Switch between different algorithms on the same points
 
     run_aco()
-    #run_anneal()
+    #  run_anneal()

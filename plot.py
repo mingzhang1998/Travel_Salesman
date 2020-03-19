@@ -28,7 +28,7 @@ def plot(points, path, length=0):
     plt.show()
 
 
-def plot_animation(points, path, length):
+def plot_animation(points, path, length, algorithm = "Ant Colony Optimization"):
     """
 
     :param points: list of tuples for the coordinates of points
@@ -47,7 +47,7 @@ def plot_animation(points, path, length):
     ax = plt.axes(xlim=(0, max(x) * 1.1), ylim=(0, max(y) * 1.1))
     plt.plot(x[0], y[0], "ro")
     plt.plot(x[1:], y[1:], "co")
-    plt.title("Ant Colony Optimization, total length = "+str(int(length)))
+    plt.title(algorithm+ ", total length = "+str(int(length)))
     line, = ax.plot([], [], lw=3)
 
     def init():
